@@ -1,0 +1,412 @@
+{% load static %}
+{% if message %}
+<script>
+    alert("{{message}}")
+</script>
+{% endif %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
+
+    <!-- Title Page-->
+    <title>Create an Account</title>
+
+    <!-- Icons font CSS-->
+    <link href="{% static 'vendor/mdi-font/css/material-design-iconic-font.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/font-awesome-4.7/css/font-awesome.min.css' %}" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link
+        href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- {% static 'vendor CSS-->
+    <link href="{% static 'vendor/select2/select2.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/datepicker/daterangepicker.css' %}" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="{% static 'css/mainReg.css' %}" rel="stylesheet" media="all">
+</head>
+
+<body>
+    {% if work == "createanaccount" %}
+    <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-4">
+                <div class="card-body">
+                    <h2 class="title">Create an Account</h2>
+                    <form action="/PostSignUp/" method="POST">
+                        {% csrf_token %}
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Name</label>
+                                    <input class="input--style-4" type="text" name="name">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Phone Number</label>
+                                    <input class="input--style-4" type="text" name="phone">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Birthday</label>
+                                    <div class="input-group-icon">
+                                        <input class="input--style-4 js-datepicker" type="text" name="birthday">
+                                        <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Gender</label>
+                                    <div class="p-t-10">
+                                        <label class="radio-container m-r-45">Male
+                                            <input type="radio" value="Male" name="gender">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="radio-container">Female
+                                            <input type="radio" value="Female" name="gender">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Email</label>
+                                    <input class="input--style-4" type="email" name="email">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Password</label>
+                                    <input class="input--style-4" type="password" name="pass">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Account Type</label>
+                            <div class="rs-select2 js-select-simple select--no-search">
+                                <select name="type">
+                                    <option disabled="disabled" selected="selected">Choose option</option>
+                                    <option>Teacher</option>
+                                    <option>Student</option>
+                                </select>
+                                <div class="select-dropdown"></div>
+                            </div>
+                        </div>
+                        <div class="p-t-15">
+                            <button class="btn btn--radius-2 btn--blue" type="submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% elif work == "editabout" %}
+    <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-4">
+                <div class="card-body">
+                    <h2 class="title">About Edit</h2>
+                    <form action="/postabout/" method="POST">
+                        {% csrf_token %}
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">District</label>
+                                    <input class="input--style-4" type="text" name="city">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">State(Full State Name)</label>
+                                    <input class="input--style-4" type="text" name="state">
+                                </div>
+                            </div><div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Country</label>
+                                    <input class="input--style-4" type="text" name="country">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Your Address Privacy</label>
+                                    <div class="p-t-10">
+                                        <label class="radio-container m-r-45">Public
+                                            <input type="radio" value="1" name="pAddress">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="radio-container">Private
+                                            <input type="radio" value="0" name="pAddress">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Phone Number</label>
+                                    <input class="input--style-4" type="text" name="phone">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Your Phone Number Privacy</label>
+                                    <div class="p-t-10">
+                                        <label class="radio-container m-r-45">Public
+                                            <input type="radio" value="1" name="pphone">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="radio-container">Private
+                                            <input type="radio" value="0" name="pphone">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Email</label>
+                                    <input class="input--style-4" type="email" name="email">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Account-Type</label>
+                                    <div class="p-t-10">
+                                        <label class="radio-container m-r-45">Teacher
+                                            <input type="radio" value="Teacher" name="atype">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="radio-container">Student
+                                            <input type="radio" value="Student" name="atype">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Write your bio</label>
+                            <div class="rs-select2 js-select-simple select--no-search">
+                                <textarea name="bio" class="input--style-4" cols="55" rows="5"></textarea>
+                            </div>
+                        </div>
+                        <div class="p-t-15">
+                            <button class="btn btn--radius-2 btn--blue" type="submit">Submit</button>
+                        </div>
+                        <div class="p-t-15">
+                            <button class="btn btn--radius-2 btn--blue" type="button" onclick="location.href='{% url 'home' %}'">
+                                Go to Home
+                            </button>
+                        </div>
+                        <div class="p-t-15">
+                            <button class="btn btn--radius-2 btn--blue" type="button" onclick="location.href='{% url 'profile' %}'">
+                                Go back to your Profile
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {% elif work == "editexp" %}
+    <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-4">
+                <div class="card-body">
+                    <h2 class="title">Add Experiences</h2>
+                    <form action="/postexp/" method="POST">
+                        {% csrf_token %}
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">About your experience</label>
+                                    <input class="input--style-4" type="text" name="exp">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Your experience at</label>
+                                    <input class="input--style-4" type="text" name="eplace">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Experience Description</label>
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        <textarea name="edesc" class="input--style-4" cols="55" rows="3"></textarea>
+                                    </div>
+                                </div>
+                                <div class="p-t-15">
+                                    <button class="btn btn--radius-2 btn--blue" type="submit">Add</button>
+                                </div>
+                                <div class="p-t-15">
+                                    <button class="btn btn--radius-2 btn--blue" type="button" onclick="location.href='{% url 'home' %}'">
+                                        Go to Home
+                                    </button>
+                                </div>
+                                <div class="p-t-15">
+                                    <button class="btn btn--radius-2 btn--blue" type="button" onclick="location.href='{% url 'profile' %}'">
+                                        Go back to your Profile
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    </div>
+    {% elif work == "editskills" %}
+    <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-4">
+                <div class="card-body">
+                    <h2 class="title">Add another skill</h2>
+                    <form action="/postskills/" method="POST">
+                        {% csrf_token %}
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Skills</label>
+                                    <input class="input--style-4" type="text" name="skill">
+                                </div>
+                                <div class="p-t-15">
+                                    <button class="btn btn--radius-2 btn--blue" type="submit">Add</button>
+                                </div>
+                                <div class="p-t-15">
+                                    <button class="btn btn--radius-2 btn--blue" type="button" onclick="location.href='{% url 'home' %}'">
+                                        Go to Home
+                                    </button>
+                                </div>
+                                <div class="p-t-15">
+                                    <button class="btn btn--radius-2 btn--blue" type="button" onclick="location.href='{% url 'profile' %}'">
+                                        Go back to your Profile
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% elif work == "editinterest" %}
+    <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-4">
+                <div class="card-body">
+                    <h2 class="title">Add another interest</h2>
+                    <form action="/postinterest/" method="POST">
+                        {% csrf_token %}
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Interest</label>
+                                    <input class="input--style-4" type="text" name="interest">
+                                </div>
+                                <div class="p-t-15">
+                                    <button class="btn btn--radius-2 btn--blue" type="submit">Add</button>
+                                </div>
+                                <div class="p-t-15">
+                                    <button class="btn btn--radius-2 btn--blue" type="button" onclick="location.href='{% url 'home' %}'">
+                                        Go to Home
+                                    </button>
+                                </div>
+                                <div class="p-t-15">
+                                    <button class="btn btn--radius-2 btn--blue" type="button" onclick="location.href='{% url 'profile' %}'">
+                                        Go back to your Profile
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% elif work == "editawards" %}
+    <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-4">
+                <div class="card-body">
+                    <h2 class="title">Add another Award or Certificate</h2>
+                    <form action="/postawards/" method="POST">
+                        {% csrf_token %}
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Award or Certificate Name</label>
+                                    <input class="input--style-4" type="text" name="award">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Award or Certificate Link</label>
+                                    <input class="input--style-4" type="url" name="alink">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Award or Certificate Description</label>
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        <textarea name="adesc" class="input--style-4" cols="55" rows="3"></textarea>
+                                    </div>
+                                </div>
+                                <div class="p-t-15">
+                                    <button class="btn btn--radius-2 btn--blue" type="submit">Add</button>
+                                </div>
+                                <div class="p-t-15">
+                                    <button class="btn btn--radius-2 btn--blue" type="button" onclick="location.href='{% url 'home' %}'">
+                                        Go to Home
+                                    </button>
+                                </div>
+                                <div class="p-t-15">
+                                    <button class="btn btn--radius-2 btn--blue" type="button" onclick="location.href='{% url 'profile' %}'">
+                                        Go back to your Profile
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        <!-- Jquery JS-->
+        <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+        <!-- Vendor JS-->
+        <script src="{% static 'vendor/select2/select2.min.js' %}"></script>
+        <script src="{% static 'vendor/datepicker/moment.min.js' %}"></script>
+        <script src="{% static 'vendor/datepicker/daterangepicker.js' %}"></script>
+        
+        <!-- Main JS-->
+        <script src="{% static 'js/global.js' %}"></script>
+        
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+</html>
+<!-- end document-->

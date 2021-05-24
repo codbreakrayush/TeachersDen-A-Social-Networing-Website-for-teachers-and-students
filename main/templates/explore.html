@@ -1,0 +1,174 @@
+{% load static %}
+<!doctype html>
+<html lang="zxx">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Teachersden</title>
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="{% static 'css/style-starter.css'  %}" />
+    <!-- Template CSS -->
+    <link href="//fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,600&display=swap"
+        rel="stylesheet">
+    <!-- Template CSS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+</head>
+
+<body>
+
+    <!-- header -->
+    <header id="site-header" class="w3l-header fixed-top">
+        <!--/nav-->
+        <nav class="navbar navbar-expand-lg navbar-light fill px-lg-0 py-0 px-3">
+            <div class="container">
+                <h1><a class="navbar-brand" href="/">
+                        TeachersDen </a></h1>
+                <!-- if logo is image enable this   
+						<a class="navbar-brand" href="#index.html">
+							<img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+						</a> -->
+                <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <!-- <span class="navbar-toggler-icon"></span> -->
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Home</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/Explore">Explore</a>
+                        </li>
+                    </ul>
+
+                    <!--/search-right-->
+                    <!--/search-right-->
+                    <div class="search-right">
+                        <a href="#search" class="btn search-hny mr-lg-3 mt-lg-0 mt-4" title="search">Search <span
+                                class=" ml-3" aria-hidden="true"></span></a>
+                        <!-- search popup -->
+                        <div id="search" class="pop-overlay">
+                            <div class="popup">
+                                <form action="/Explore" method="GET" id="my_form_is" class="search-box">
+									<input type="search" placeholder="Search account" name="name"><br><br>
+                                    <input type="search" placeholder="Skill" name="skill"><br><br>
+                                    <input type="search" placeholder="District" name="city"><br><br>
+                                    <input type="search" placeholder="State" name="state"><br><br>
+                                    <input type="search" placeholder="Country" name="country"><br><br>
+                                    <a href="javascript:$('#my_form_is').submit();" class="btn search-hny mr-lg-3 mt-lg-0 mt-4 " title="search">Search<span class=" ml-3" aria-hidden="true"></span></a>
+								</form>
+                            </div>
+                            <a class="close" href="#close">×</a>
+                        </div>
+                        <!-- /search popup -->
+                        <!--/search-right-->
+                    </div>
+
+
+                </div>
+            </div>
+        </nav>
+        <!--//nav-->
+    </header>
+    <section class="w3l-albums py-5" id="projects">
+        <div class="container py-lg-4">
+            <div class="row">
+                <div class="col-lg-12 mx-auto">
+                    <!--Horizontal Tab-->
+                    <div id="parentHorizontalTab">
+                        {% if results != "0" %}
+                        <ul class="resp-tabs-list hor_1">
+                            <li>Search Results</li>
+                            <div class="clear"></div>
+                        </ul>
+                        <div class="resp-tabs-container hor_1">
+                            <div class="albums-content">
+                                <div class="row">
+                                    <!--/set1-->
+                                    {% for uname,name,bio,atype,img,score in results %}
+                                    {% if uname != "None" %}
+                                    <div class="col-lg-4 new-relise-gd mt-lg-0 mt-0">
+                                        <div class="slider-info">
+                                            <div class="img-circle">
+                                                <a href="/aprofile/{{uname}}">
+
+                                                    <img src="{{img}}" class="img-fluid" alt="author image">
+                                                </a>
+                                            </div>
+                                            <div class="message">
+                                                <p>Score : {{score}}</p>
+                                                <a class="author-book-title" href="/aprofile/{{uname}}">{{name}}</a>
+                                                {% if bio is not none %}
+                                                <p>{{bio}}</p>
+                                                {% endif %}
+                                                <h4> <span class="post">{{atype}}
+
+                                                    </span>
+
+                                                </h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                    {% endfor %}
+                                    <!-- end -->
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        {% else %}
+                        <li>No Results Available, Try Searching Again</li>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--//footer-66 -->
+    <footer class="w3l-footer">
+        <section class="footer-inner-main">
+            <div class="below-section">
+                <div class="container">
+                    <div class="copyright-footer">
+                        <div class="columns text-lg-left">
+                            <p>&copy; 2021. All rights reserved | Designed by <a
+                                    href="/about">Ayush Rathore</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </footer>
+</body>
+
+</html>
+<!-- responsive tabs -->
+<script src="assets/js/jquery-1.9.1.min.js"></script>
+<script src="assets/js/easyResponsiveTabs.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //Horizontal Tab
+        $('#parentHorizontalTab').easyResponsiveTabs({
+            type: 'default', //Types: default, vertical, accordion
+            width: 'auto', //auto or any width like 600px
+            fit: true, // 100% fit in a container
+            tabidentify: 'hor_1', // The tab groups identifier
+            activate: function (event) { // Callback function if tab is switched
+                var $tab = $(this);
+                var $info = $('#nested-tabInfo');
+                var $name = $('span', $info);
+                $name.text($tab.text());
+                $info.show();
+            }
+        });
+    });
+</script>
+<!-- Template JavaScript -->
+<!--//MENU-JS-->

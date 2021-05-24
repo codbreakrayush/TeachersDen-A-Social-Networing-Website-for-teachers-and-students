@@ -1,0 +1,443 @@
+{% load static %}
+<!doctype html>
+<html lang="zxx">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Teachersden</title>
+	<!-- Template CSS -->
+	<link rel="stylesheet" href="{% static 'css/style-starter.css'  %}" />
+	<!-- Template CSS -->
+	<link href="//fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,600&display=swap"
+		rel="stylesheet">
+	<!-- Template CSS -->
+	<style>
+		.w3l-blog-single .blg-img img {
+			width: 60%;
+		}
+
+		.img-fluid {
+			max-width: auto;
+			height: 50%;
+		}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</head>
+
+<body>
+
+	<!-- header -->
+	<header id="site-header" class="w3l-header fixed-top">
+		<!--/nav-->
+		<nav class="navbar navbar-expand-lg navbar-light fill px-lg-0 py-0 px-3">
+			<div class="container">
+				<h1><a class="navbar-brand" href="index.html">
+						TeachersDen </a></h1>
+				<!-- if logo is image enable this   
+						<a class="navbar-brand" href="#index.html">
+							<img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+						</a> -->
+				<button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
+					data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<!-- <span class="navbar-toggler-icon"></span> -->
+					<span class="fa icon-expand fa-bars"></span>
+					<span class="fa icon-close fa-times"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item active">
+							<a class="nav-link" href="/">Home</a>
+						</li>
+						{% if not login %}
+						<li class="nav-item">
+							<a class="nav-link" href="/LogIn">Login/Signup</a>
+						</li>
+						{% else %}
+						<li class="nav-item">
+							<a class="nav-link" href="/posts/{{uname}}">My Posts</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/Profile">My Profile</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/follower/{{uname}}">My Followers/Followings</a>
+						</li>
+
+						<li class="nav-item">
+							<a class="nav-link" href="/LogOut">Log Out</a>
+						</li>
+						{% endif %}
+					</ul>
+					{% if login %}
+					<div class="search-right">
+						<a href="#activity" class="nav-link" title="search">Activities <span
+								class=" ml-3" aria-hidden="true"></span></a>
+						<!-- search popup -->
+						<div id="activity" class="pop-overlay">
+							<div class="popup">
+								{% if activities == "1" %}
+								<form class="search-box">
+									<strong>No Activities Here </strong>
+								</form>
+								{% else %}
+								<form class="search-box">
+									{% for tname,ts in activities %}
+										{% if ts == "1" %}
+									<strong><a href="/aprofile/{{tname}}">{{tname}}</a></strong> started following you.<br><br>
+										{% elif ts != 1 %}
+									<strong><a href="/aprofile/{{tname}}">{{tname}}</a></strong><a href="/spost/{{ts}}"> commented on your post.</a><br><br>
+										{% endif %}
+									{% endfor %}
+								</form>
+								
+								{% endif %}
+							</div>
+							<a class="close" href="#close">×</a>
+						</div>
+						<!-- /search popup -->
+						<!--/search-right-->
+					</div>
+					{% endif %}
+  
+
+					<!--/search-right-->
+					<!--/search-right-->
+					<div class="search-right">
+						<a href="#search" class="btn search-hny mr-lg-3 mt-lg-0 mt-4" title="search">Search <span
+								class=" ml-3" aria-hidden="true"></span></a>
+						<!-- search popup -->
+						<div id="search" class="pop-overlay">
+							<div class="popup">
+								<form action="/Explore" method="GET" id="my_form_is" class="search-box">
+									<input type="search" placeholder="Search account" name="name"><br><br>
+									<input type="search" placeholder="Skill" name="skill"><br><br>
+									<input type="search" placeholder="District" name="city"><br><br>
+									<input type="search" placeholder="State" name="state"><br><br>
+									<input type="search" placeholder="Country" name="country"><br><br>
+									<a href="javascript:$('#my_form_is').submit();"
+										class="btn search-hny mr-lg-3 mt-lg-0 mt-4 " title="search">Search<span
+											class=" ml-3" aria-hidden="true"></span></a>
+								</form>
+							</div>
+							<a class="close" href="#close">×</a>
+						</div>
+						<!-- /search popup -->
+						<!--/search-right-->
+					</div>
+
+
+				</div>
+				<!-- toggle switch for light and dark theme -->
+				<!-- //toggle switch for light and dark theme -->
+			</div>
+		</nav>
+		<!--//nav-->
+	</header>
+	<!-- //header -->
+	<!-- main-slider -->
+
+	<section class="w3l-blog-single">
+		<div class="single blog py-5">
+			<div class="container py-lg-4">
+				<div style="margin: 8px auto; display: block; text-align:center;">
+
+					<!---728x90--->
+
+
+				</div>
+				<div class="d-grid grid-colunm-2 mt-lg-5 mt-4">
+					<!-- left side blog post content -->
+					<div class="single-left">
+						{% for uname,name,url,desc,date,ts,comments in data %}
+						<div class="single-left1 mt-5">
+							<h5 class="card-title"><a href="/aprofile/{{uname}}">{{uname}}</a></h5>
+							<hr>
+							<div class="blg-img">
+								<a href="/aprofile/{{uname}}"><img src="{{url}}" alt=" " class="img-fluid">
+								</a>
+							</div>
+							<hr>
+							<div class="btom-cont">
+								<h4><span class="fa fa-clock-o mr-1" aria-hidden="true"></span>{{date}}</h4>
+								<h5 class="card-title"><a href="/aprofile/{{uname}}">{{name}}</a></h5>
+
+								<p class="">{{desc}}</p>
+								<ul class="admin-post">
+									<li>
+										<a href="#comments"><span class="fa fa-comments-o"></span>Comments</a>
+									</li>
+								</ul>
+								<div class="search-right">
+									<!-- search popup -->
+									<div id="comments" class="pop-overlay">
+										<div class="popup">
+											<form action="/" method="POST" class="search-box">
+												{% csrf_token %}
+												<input type="search" placeholder="Your Comment" name="comment"
+													autofocus=""><br><br>
+												<input type="hidden" value="1" name="com">
+												<input type="hidden" value="{{uname}}" name="oname">
+												<input type="hidden" value="{{ts}}" name="time">
+												<button type="submit" class="btn"><span class="fa fa-search"
+														aria-hidden="true"> Comment</span></button>
+												{% for cname,comment in comments %}
+												<strong>{{cname}}</strong> {{comment}}<br><br>
+												{% endfor %}
+											</form>
+										</div>
+										<a class="close" href="#close">×</a>
+									</div>
+									<!-- /search popup -->
+									<!--/search-right-->
+								</div>
+							</div>
+						</div>
+						<hr>
+						<hr>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<!-- footer-66 -->
+	<footer class="w3l-footer">
+		<section class="footer-inner-main">
+			<div class="below-section">
+				<div class="container">
+					<div class="copyright-footer">
+						<div class="columns text-lg-left">
+							<p>&copy; 2021 TeachersDen. All rights reserved | Designed by <a href="/about">Ayush Rathore</a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- copyright -->
+			<!-- move top -->
+			<button onclick="topFunction()" id="movetop" title="Go to top">
+				<span class="fa fa-arrow-up" aria-hidden="true"></span>
+			</button>
+			<script>
+				// When the user scrolls down 20px from the top of the document, show the button
+				// window.onscroll = function () {
+				// 	scrollFunction()
+				// };
+
+				// function scrollFunction() {
+				// 	if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+				// 		document.getElementById("movetop").style.display = "block";
+				// 	} else {
+				// 		document.getElementById("movetop").style.display = "none";
+				// 	}
+				// }
+
+				// // When the user clicks on the button, scroll to the top of the document
+				// function topFunction() {
+				// 	document.body.scrollTop = 0;
+				// 	document.documentElement.scrollTop = 0;
+				// }
+			</script>
+			<!-- /move top -->
+
+		</section>
+	</footer>
+	<!--//footer-66 -->
+</body>
+
+</html>
+<!-- responsive tabs -->
+<!-- //responsive tabs -->
+<!--/theme-change-->
+<!-- <script src="assets/js/theme-change.js"></script> -->
+<!-- //theme-change-->
+<!-- <script src="assets/js/owl.carousel.js"></script> -->
+<!-- script for banner slider-->
+<!-- <script>
+	$(document).ready(function () {
+		$('.owl-one').owlCarousel({
+			stagePadding:280,
+			loop: true,
+			nav: true,
+			responsiveClass: true,
+			autoplay: true,
+			autoplayTimeout: 5000,
+			autoplaySpeed: 1000,
+			autoplayHoverPause: false,
+			responsive: {
+				0: {
+					items: 1,
+					stagePadding:40,
+					nav: false
+				},
+				480: {
+					items: 1,
+					stagePadding:60,
+					nav: true
+				},
+				667: {
+					items: 1,
+					stagePadding:80,
+					nav: true
+				},
+				1000: {
+					items: 1,
+					nav: true
+				}
+			}
+		})
+	})
+</script> -->
+<!-- //script -->
+<!-- <script>
+	$(document).ready(function () {
+		$('.owl-three').owlCarousel({
+			loop: true,
+			margin: 20,
+			nav: false,
+			responsiveClass: true,
+			autoplay: true,
+			autoplayTimeout: 5000,
+			autoplaySpeed: 1000,
+			autoplayHoverPause: false,
+			responsive: {
+				0: {
+					items: 2,
+					nav: false
+				},
+				480: {
+					items: 2,
+					nav: true
+				},
+				667: {
+					items: 3,
+					nav: true
+				},
+				1000: {
+					items: 5,
+					nav: true
+				}
+			}
+		})
+	})
+</script> -->
+<!-- //script -->
+<!-- /mid-script -->
+<!-- <script>
+	$(document).ready(function () {
+		$('.owl-mid').owlCarousel({
+			loop: true,
+			margin: 0,
+			nav: false,
+			responsiveClass: true,
+			autoplay: true,
+			autoplayTimeout: 5000,
+			autoplaySpeed: 1000,
+			autoplayHoverPause: false,
+			responsive: {
+				0: {
+					items: 1,
+					nav: false
+				},
+				480: {
+					items: 1,
+					nav: false
+				},
+				667: {
+					items: 1,
+					nav: true
+				},
+				1000: {
+					items: 1,
+					nav: true
+				}
+			}
+		})
+	})
+</script> -->
+<!-- //mid-script -->
+
+<!-- script for owlcarousel -->
+<!-- Template JavaScript -->
+<script>
+	// $(document).ready(function () {
+	// 	$('.popup-with-zoom-anim').magnificPopup({
+	// 		type: 'inline',
+
+	// 		fixedContentPos: false,
+	// 		fixedBgPos: true,
+
+	// 		overflowY: 'auto',
+
+	// 		closeBtnInside: true,
+	// 		preloader: false,
+
+	// 		midClick: true,
+	// 		removalDelay: 300,
+	// 		mainClass: 'my-mfp-zoom-in'
+	// 	});
+
+	// 	$('.popup-with-move-anim').magnificPopup({
+	// 		type: 'inline',
+
+	// 		fixedContentPos: false,
+	// 		fixedBgPos: true,
+
+	// 		overflowY: 'auto',
+
+	// 		closeBtnInside: true,
+	// 		preloader: false,
+
+	// 		midClick: true,
+	// 		removalDelay: 300,
+	// 		mainClass: 'my-mfp-slide-bottom'
+	// 	});
+	// });
+</script>
+<!--//-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+	// $(function () {
+	// 	$('.navbar-toggler').click(function () {
+	// 		$('body').toggleClass('noscroll');
+	// 	})
+	// });
+</script>
+<!-- disable body scroll which navbar is in active -->
+
+<!--/MENU-JS-->
+<script>
+	// $(window).on("scroll", function () {
+	// 	var scroll = $(window).scrollTop();
+
+	// 	if (scroll >= 80) {
+	// 		$("#site-header").addClass("nav-fixed");
+	// 	} else {
+	// 		$("#site-header").removeClass("nav-fixed");
+	// 	}
+	// });
+
+	//Main navigation Active Class Add Remove
+	// $(".navbar-toggler").on("click", function () {
+	// 	$("header").toggleClass("active");
+	// });
+	// $(document).on("ready", function () {
+	// 	if ($(window).width() > 991) {
+	// 		$("header").removeClass("active");
+	// 	}
+	// 	$(window).on("resize", function () {
+	// 		if ($(window).width() > 991) {
+	// 			$("header").removeClass("active");
+	// 		}
+	// 	});
+	// });
+</script>
+<!--//MENU-JS-->
+
+<!-- <script src="assets/js/bootstrap.min.js"></script> -->

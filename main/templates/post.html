@@ -1,0 +1,189 @@
+{% load static %}
+<!doctype html>
+<html lang="zxx">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Teachersden</title>
+	<!-- Template CSS -->
+	<link rel="stylesheet" href="{% static 'css/style-starter.css'  %}" />
+	<!-- Template CSS -->
+	<link href="//fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,600&display=swap"
+		rel="stylesheet">
+	<!-- Template CSS -->
+	<style>
+		.w3l-blog-single .blg-img img {
+			width: 60%;
+		}
+
+		.img-fluid {
+			max-width: auto;
+			height: 50%;
+		}
+	</style>
+</head>
+
+<body>
+
+	<!-- header -->
+	<header id="site-header" class="w3l-header fixed-top">
+		<!--/nav-->
+		<nav class="navbar navbar-expand-lg navbar-light fill px-lg-0 py-0 px-3">
+			<div class="container">
+				<h1><a class="navbar-brand" href="/">
+						TeachersDen </a></h1>
+				<!-- if logo is image enable this   
+						<a class="navbar-brand" href="#index.html">
+							<img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+						</a> -->
+				<button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
+					data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<!-- <span class="navbar-toggler-icon"></span> -->
+					<span class="fa icon-expand fa-bars"></span>
+					<span class="fa icon-close fa-times"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item">
+							<a class="nav-link" href="/">Home</a>
+						</li>
+						{% if not login %}
+						<li class="nav-item">
+							<a class="nav-link" href="/LogIn">Login/Signup</a>
+						</li>
+						{% else %}
+						<li class="nav-item active">
+							<a class="nav-link" href="/posts/{{uname}}">My Posts</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/Profile">My Profile</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/follower/{{uname}}">My Followers/Followings</a>
+						</li>
+
+						<li class="nav-item">
+							<a class="nav-link" href="/LogOut">Log Out</a>
+						</li>
+						{% endif %}
+					</ul>
+
+					<!--/search-right-->
+					<!--/search-right-->
+					<div class="search-right">
+						<a href="#search" class="btn search-hny mr-lg-3 mt-lg-0 mt-4" title="search">Search <span
+								class=" ml-3" aria-hidden="true"></span></a>
+						<!-- search popup -->
+						<div id="search" class="pop-overlay">
+							<div class="popup">
+								<form action="/Explore" method="GET" class="search-box">
+									<input type="search" placeholder="Search account" name="search" required="required"
+										autofocus="">
+									<button type="submit" class="btn "><span class=""
+											aria-hidden="true">Search</span></button>
+								</form>
+							</div>
+							<a class="close" href="#close">×</a>
+						</div>
+						<!-- /search popup -->
+						<!--/search-right-->
+					</div>
+
+
+				</div>
+				<!-- toggle switch for light and dark theme -->
+				<!-- //toggle switch for light and dark theme -->
+			</div>
+		</nav>
+		<!--//nav-->
+	</header>
+	<!-- //header -->
+	<!-- main-slider -->
+
+	<section class="w3l-blog-single">
+		<div class="single blog py-5">
+			<div class="container py-lg-4">
+				<div style="margin: 8px auto; display: block; text-align:center;">
+
+					<!---728x90--->
+
+
+				</div>
+				<div class="d-grid grid-colunm-2 mt-lg-5 mt-4">
+					<!-- left side blog post content -->
+					<div class="single-left">
+						<div class="single-left1 mt-5">
+							<h5 class="card-title"><a href="/aprofile/{{uname}}">{{uname}}</a></h5>
+							<hr>
+							<div class="blg-img">
+								<a href="/aprofile/{{uname}}"><img src="{{url}}" alt=" "
+									class="img-fluid">
+								</a>
+							</div>
+							<hr>
+							<div class="btom-cont">
+								<h4><span class="fa fa-clock-o mr-1" aria-hidden="true"></span>{{date}}</h4>
+								<h5 class="card-title"><a href="/aprofile/{{uname}}">{{name}}</a></h5> <p class="">{{desc}}</p>
+								<ul class="admin-post">
+									<li>
+										<a href="#comments"><span class="fa fa-comments-o"></span>Comments</a>
+									</li>
+								</ul>
+								<div class="search-right">
+									<!-- search popup -->
+									<div id="comments" class="pop-overlay">
+										<div class="popup">
+											<form action="/spost/{{ts}}" method="POST" class="search-box">
+												{% csrf_token %}
+												<input type="search" placeholder="Your Comment" name="comment" autofocus=""><br><br>
+												<input type="hidden" value="{{ts}}" name="time">
+												<button type="submit" class="btn"><span class="fa fa-search" aria-hidden="true"> Comment</span></button>
+												{% for cname,comment in comments %}
+												<strong>{{cname}}</strong> {{comment}}<br><br>
+												{% endfor %}
+											</form>
+										</div>
+										<a class="close" href="#close">×</a>
+									</div>
+									<!-- /search popup -->
+									<!--/search-right-->
+								</div>
+							</div>
+						</div>
+						<hr>
+						<hr>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<!-- footer-66 -->
+	<footer class="w3l-footer">
+		<section class="footer-inner-main">
+			<div class="below-section">
+				<div class="container">
+					<div class="copyright-footer">
+						<div class="columns text-lg-left">
+							<p>&copy; 2020 ProShowz. All rights reserved | Designed by <a
+									href="https://w3layouts.com">W3layouts</a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- copyright -->
+			<!-- move top -->
+			<button onclick="topFunction()" id="movetop" title="Go to top">
+				<span class="fa fa-arrow-up" aria-hidden="true"></span>
+			</button>
+		</section>
+	</footer>
+	<!--//footer-66 -->
+</body>
+
+</html>

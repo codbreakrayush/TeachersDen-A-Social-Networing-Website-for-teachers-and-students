@@ -1,0 +1,138 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Followers/Followings</title>
+        <link rel="icon" type="image/x-icon" href=" " />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+        <style>
+            .btn {
+  display: inline-block;
+  line-height: 11px;
+  padding: -1px 50px;
+  -webkit-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+  cursor: pointer;
+  font-size: 14px;
+  color: #fff;
+  font-family: "Poppins", "Arial", "Helvetica Neue", sans-serif;
+}
+.btn--radius-2 {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+            .btn--blue {
+  background: #BD5D38;
+}
+.imgg-fluid {
+    max-width: 6%;
+    height: auto;
+}
+        </style>
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+            <a class="navbar-brand js-scroll-trigger" href="#page-top">
+                <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="{{pimg}}" alt="" /></span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/"><b>Home</b> </a></li>
+                    {% if uname == pname %}
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/Profile"><b>Profile</b> </a></li>
+                    {% else %}
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/aprofile/{{uname}}"><b>Profile</b> </a></li>
+                    {% endif %}
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#Followers">Followers </a></liz
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#Followings">Followings </a></liz
+                </ul>
+            </div>
+        </nav>
+        <!-- Page Content-->
+        <div class="container-fluid p-0">
+            <!-- About-->
+            <section class="resume-section" id="Followers">
+                <div class="resume-section-content">
+                    <h2 class="mb-5">Followers</h2>
+                    <!-- <div class="subheading mb-3">Skills</div> -->
+                    <ul class="fa-ul mb-0">
+                        {% for Follower,img,cf in Followers %}
+                        <li>
+                            {% if cf == "1" %}
+                            <form action="/unfollow/" method="POST">
+                                {% csrf_token %}
+                                <div class="lead mb-5"><a href="/aprofile/{{Follower}}"><img class="imgg-fluid img-profile rounded-circle mx-auto mb-2" src="{{img}}" alt="" /> {{Follower}}</a>
+                                    <input type="radio" id="huey" name="unfollow" value="{{Follower}}" checked hidden>
+                                    <button class="btn btn--radius-2 btn--blue" type="submit">Unfollow</button>
+                                </form>
+                                {% else %}
+                                <form action="/follow/" method="POST">
+                                    {% csrf_token %}
+                                    <div class="lead mb-5"><a href="/aprofile/{{Follower}}"><img class="imgg-fluid img-profile rounded-circle mx-auto mb-2" src="{{img}}" alt="" /> {{Follower}}</a>
+                                        <input type="radio" id="huey" name="follow" value="{{Follower}}" checked hidden>
+                                        <button class="btn btn--radius-2 btn--blue" type="submit">Follow</button>
+                                    </form>
+                                {% endif %}
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </section>
+            <hr class="m-0" />
+            <!-- #Followings -->
+            <section class="resume-section" id="Followings">
+                <div class="resume-section-content">
+                    <h2 class="mb-5">Followings</h2>
+                    <!-- <div class="subheading mb-3">Skills</div> -->
+                    <ul class="fa-ul mb-0">
+                        {% for Following,img,cf in Followings %}
+                        <li>
+                            {% if cf == "1" %}
+                            <form action="/unfollow/" method="POST">
+                                {% csrf_token %}
+                                <div class="lead mb-5"><a href="/aprofile/{{Follower}}"><img class="imgg-fluid img-profile rounded-circle mx-auto mb-2" src="{{img}}" alt="" /> {{Following}}</a>
+                                <input type="radio" id="huey" name="unfollow" value="{{Following}}" checked hidden>
+                                    <button class="btn btn--radius-2 btn--blue" type="submit">unfollow</button>
+                            </form>
+                            {% else %}
+                            <form action="/follow/" method="POST">
+                                {% csrf_token %}
+                                <div class="lead mb-5"><a href="/aprofile/{{Follower}}"><img class="imgg-fluid img-profile rounded-circle mx-auto mb-2" src="{{img}}" alt="" /> {{Following}}</a>
+                                <input type="radio" id="huey" name="follow" value="{{Following}}" checked hidden>
+                                    <button class="btn btn--radius-2 btn--blue" type="submit">Follow</button>
+                            </form>
+                            {% endif %}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </section>
+            <hr class="m-0" />
+            <!-- Interests-->
+            
+        </div>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Third party plugin JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="{% static 'js/scripts.js' %}"></script>
+    </body>
+</html>

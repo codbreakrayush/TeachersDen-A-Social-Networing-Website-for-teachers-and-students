@@ -1,0 +1,43 @@
+from os import name
+from django.urls import path
+from django.urls.resolvers import URLPattern
+from . import views
+
+urlpatterns = [
+    path('',views.home,name="home"),
+    path('Explore/',views.Search,name="explore"),
+    path('Profile/',views.Profile,name="profile"),
+    path('posts/<str:pname>',views.posts,name="posts"),
+    path('editabout/',views.editabout,name="editabout"),
+    path('editexp/',views.editexp,name="editexp"),
+    path('editedu/',views.editedu,name="editedu"),
+    path('editskills/',views.editskills,name="editskills"),
+    path('editinterest/',views.editinterest,name="editinterest"),
+    path('editawards/',views.editawards,name="editawards"),
+    path('postabout/',views.postabout,name="postabout"),
+    path('postexp/',views.postexp,name="postexp"),
+    path('postedu/',views.postedu,name="postedu"),
+    path('postskills/',views.postskills,name="postskills"),
+    path('postinterest/',views.postinterest,name="postinterest"),
+    path('postawards/',views.postawards,name="postawards"),
+    path('LogIn/',views.logIn,name="logIn"),
+    path('PostSignIn/',views.PostSignIn,name="postsignin"),
+    path('LogOut/',views.logOut,name="logOut"),
+    path('SignUp',views.signUp,name="SignUp"),
+    path('PostSignUp/',views.PostSignUp,name="postsignup"),
+    path('testcookie/',views.cookie_session),
+    path('deletecookie/', views.cookie_delete),
+    path('follower/<str:pname>',views.follower,name="follower"),
+    path('follow/',views.follow,name="follow"),
+    path('unfollow/',views.unfollow,name="unfollow"),
+    path('aprofile/<str:pname>',views.aprofile,name="aprofile"),
+    path('image/',views.image,name="img"),
+    path('postimage/',views.postimage,name="postimg"),
+    path('addpost/',views.addpost,name="addpost"),
+    path('postpost/',views.postpost,name="postpost"),
+    path('score/<str:pname>',views.score,name="score"),
+    path('addscore/<str:pname>',views.addscore,name="addscore"),
+    path('postscore/',views.postscore,name="postscore"),
+    path('spost/<str:ts>',views.singlepost,name="spost"),
+    path('about/',views.about,name="about"),
+]

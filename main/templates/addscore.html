@@ -1,0 +1,250 @@
+{% load static %}
+{% if message %}
+<script>
+    alert("{{message}}")
+</script>
+{% endif %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
+
+    <!-- Title Page-->
+    <title>Create an Account</title>
+
+    <!-- Icons font CSS-->
+    <link href="{% static 'vendor/mdi-font/css/material-design-iconic-font.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/font-awesome-4.7/css/font-awesome.min.css' %}" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link
+        href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- {% static 'vendor CSS-->
+    <link href="{% static 'vendor/select2/select2.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/datepicker/daterangepicker.css' %}" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="{% static 'css/mainReg.css' %}" rel="stylesheet" media="all">
+</head>
+
+<body>
+    <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-4">
+                <div class="card-body">
+                    <h2 class="title">Give Scores to your Teacher</h2>
+                    <form action="/postscore/" method="POST">
+                        {% csrf_token %}
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Teaching Ability</label>
+                                    <div class="p-t-10">
+                                        <label class="radio-container m-r-45">Best
+                                            <input type="radio" value="5" name="teaching_ability">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="radio-container">Good
+                                            <input type="radio" value="4" name="teaching_ability">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="radio-container">Not Know
+                                            <input type="radio" value="3" name="teaching_ability">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="radio-container">Bad
+                                            <input type="radio" value="2" name="teaching_ability">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="radio-container">Worst
+                                            <input type="radio" value="1" name="teaching_ability">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Teaching Style</label>
+                                    <div class="p-t-10">
+                                        <label class="radio-container m-r-45">Innovative and Interactive
+                                            <input type="radio" value="5" name="teaching_style">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="radio-container">Interactive
+                                            <input type="radio" value="4" name="teaching_style">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="radio-container">Not Know
+                                            <input type="radio" value="3" name="teaching_style">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="radio-container">Innovative
+                                            <input type="radio" value="2" name="teaching_style">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="radio-container">Neither
+                                            <input type="radio" value="1" name="teaching_style">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Communication Skills</label>
+                                    <div class="p-t-10">
+                                        <label class="radio-container m-r-45">Nice
+                                            <input type="radio" value="5" name="communication_skills">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="radio-container">Good
+                                            <input type="radio" value="4" name="communication_skills">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="radio-container">Not Know
+                                            <input type="radio" value="3" name="communication_skills">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="radio-container">Bad
+                                            <input type="radio" value="2" name="communication_skills">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="radio-container">Worst
+                                            <input type="radio" value="1" name="communication_skills">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="row row-space">
+                                <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">To be able to motivate in particular field</label>
+                                    <div class="p-t-10">
+                                        <label class="radio-container m-r-45">Best
+                                            <input type="radio" value="5" name="motivation_ability">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="radio-container">Good
+                                            <input type="radio" value="4" name="motivation_ability">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="radio-container">Not Know
+                                            <input type="radio" value="3" name="motivation_ability">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="radio-container">Bad
+                                            <input type="radio" value="2" name="motivation_ability">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="radio-container">Worst
+                                            <input type="radio" value="1" name="motivation_ability">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="row row-space">
+                                <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Is Helpful</label>
+                                    <div class="p-t-10">
+                                        <label class="radio-container m-r-45">Best
+                                            <input type="radio" value="5" name="heplful">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="radio-container">Good
+                                            <input type="radio" value="4" name="heplful">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="radio-container">Not Know
+                                            <input type="radio" value="3" name="heplful">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="radio-container">Bad
+                                            <input type="radio" value="2" name="heplful">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="radio-container">Worst
+                                            <input type="radio" value="1" name="heplful">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="row row-space">
+                                <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Inspire Student for ethical behavior</label>
+                                    <div class="p-t-10">
+                                        <label class="radio-container m-r-45">Best
+                                            <input type="radio" value="5" name="Inspire">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="radio-container">Good
+                                            <input type="radio" value="4" name="Inspire">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="radio-container">Not Know
+                                            <input type="radio" value="3" name="Inspire">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="radio-container">Bad
+                                            <input type="radio" value="2" name="Inspire">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="radio-container">Worst
+                                            <input type="radio" value="1" name="Inspire">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" value="{{uname}}" name="uname">
+                        <div class="p-t-15">
+                            <button class="btn btn--radius-2 btn--blue" type="submit">Submit</button>
+                        </div>
+                        <div class="p-t-15">
+                            <button class="btn btn--radius-2 btn--blue" type="button" onclick="location.href='{% url 'home' %}'">
+                                Go to Home
+                            </button>
+                        </div>
+                        <div class="p-t-15">
+                            <button class="btn btn--radius-2 btn--blue" type="button" onclick="location.href='{% url 'profile' %}'">
+                                Go back to your Profile
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <!-- Vendor JS-->
+    <script src="{% static 'vendor/select2/select2.min.js' %}"></script>
+    <script src="{% static 'vendor/datepicker/moment.min.js' %}"></script>
+    <script src="{% static 'vendor/datepicker/daterangepicker.js' %}"></script>
+    
+    <!-- Main JS-->
+    <script src="{% static 'js/global.js' %}"></script>
+    
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+</html>
